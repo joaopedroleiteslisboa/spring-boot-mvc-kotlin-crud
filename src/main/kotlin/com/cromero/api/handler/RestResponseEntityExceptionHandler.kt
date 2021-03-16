@@ -1,6 +1,7 @@
 package com.cromero.api.handler
 
 import com.cromero.api.controller.ResponseDTO
+import com.cromero.api.service.RegraNegocioException
 import com.cromero.api.service.UserNotFoundException
 import mu.KotlinLogging
 import org.springframework.context.MessageSource
@@ -25,6 +26,17 @@ class RestResponseEntityExceptionHandler(private val messageSource: MessageSourc
         LOGGER.error("$ex.message")
         val responseDTO =
             ResponseDTO(status = HttpStatus.NOT_FOUND.value(), data = "User not found")
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDTO)
+    }
+
+    @ExceptionHandler(RegraNegocioException::class)
+    fun handleControllerException(
+        ex: RegraNegocioException,
+        request: WebRequest
+    ): ResponseEntity<Any> {
+        LOGGER.error("$ex.message")
+        val responseDTO =
+            ResponseDTO(status = HttpStatus.BAD_REQUEST.value(), data = ex.message as String)
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDTO)
     }
 
