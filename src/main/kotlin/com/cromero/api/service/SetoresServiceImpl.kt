@@ -10,20 +10,15 @@ import org.springframework.stereotype.Service
 @Service
 class SetoresServiceImpl(val repository: SetorRepository) : SetorService {
 
-
     override fun salvarSetor(setor: Setor): Setor {
-
 
         if (setor.name.isNullOrBlank())
             throw RegraNegocioException("Setor com nome Invalido")
 
-
         if (this.repository.findByName(setor.name).isPresent)
             throw RegraNegocioException("Setor informado já existente")
 
-
         return this.repository.save(setor)
-
     }
 
     override fun listarSetores(): List<Setor> {
@@ -31,23 +26,30 @@ class SetoresServiceImpl(val repository: SetorRepository) : SetorService {
     }
 
     override fun buscarPorId(id: Long): Setor {
-        if(id == null)
+        if (id == null)
             throw RegraNegocioException("Id não informado")
 
         return this.repository.findById(id)?.let { optional ->
 
-            if(!optional.isPresent)
+            if (!optional.isPresent)
                 throw RegraNegocioException("Setor não localizado")
             else
-               return  optional.get()
+               return optional.get()
         }
-
     }
 
     override fun listarComFiltros(page: Pageable, query: Specification<Setor?>?): Page<Setor> {
 
-
-
         return this.repository.findAll(query, page)
+    }
+
+    override fun deletar(id: Long) {
+
+        if (id == null)
+            throw RegraNegocioException("Setor informado não localizado")
+
+        this.buscarPorId(id)
+
+        this.repository.deleteById(id)
     }
 }

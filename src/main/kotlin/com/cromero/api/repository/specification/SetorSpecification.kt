@@ -1,16 +1,14 @@
 package com.cromero.api.repository.specification
 
 import com.cromero.api.repository.Setor
-import org.springframework.data.jpa.domain.Specification
-import javax.persistence.criteria.Root
 import javax.persistence.criteria.CriteriaBuilder
 import javax.persistence.criteria.CriteriaQuery
+import javax.persistence.criteria.Root
+import org.springframework.data.jpa.domain.Specification
 
 class SetorSpecification {
 
-
     companion object {
-
 
         fun porID(id: Long?): Specification<Setor?>? {
             return if (id == null) {
@@ -40,5 +38,4 @@ class SetorSpecification {
             }
         }
     }
-
 }

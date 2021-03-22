@@ -5,20 +5,16 @@ import com.cromero.api.repository.specification.SetorSpecification
 import com.cromero.api.service.RegraNegocioException
 import com.cromero.api.service.SetorService
 import org.springframework.data.domain.Page
-import org.springframework.http.MediaType
-import org.springframework.web.bind.annotation.*
-import java.awt.PageAttributes
-import javax.print.attribute.standard.Media
-import org.springframework.data.jpa.domain.Specification
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
-
+import org.springframework.data.jpa.domain.Specification
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/setor")
 class SetorController(val service: SetorService) {
-
 
     @GetMapping
     fun listarComFiltros(
@@ -34,7 +30,6 @@ class SetorController(val service: SetorService) {
             SetorSpecification.porID(id)
         )?.and(SetorSpecification.porNome(nome))
 
-
         var retorno = this.service.listarComFiltros(sortedByPriceDesc, query)
 
         if (retorno.isEmpty)
@@ -43,17 +38,26 @@ class SetorController(val service: SetorService) {
         return retorno
     }
 
-
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     fun salvarSetor(@RequestBody setor: Setor): Setor = this.service.salvarSetor(setor)
-
 
     @GetMapping(value = ["/all"])
     fun listarSetores(): List<Setor> = this.service.listarSetores()
 
-
     @GetMapping(value = ["/{id}"])
     fun buscarPorId(@PathVariable("id") id: Long): Setor = this.service.buscarPorId(id)
 
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    fun deletar(@PathVariable("id") id: Long) {
 
+        this.service.deletar(id)
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    fun testar(): String {
+
+        return "ola mundo do teste"
+    }
 }

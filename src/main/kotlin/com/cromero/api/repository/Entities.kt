@@ -15,7 +15,5 @@ data class UserEntity(
 @Entity
 data class PetEntity(@Id @GeneratedValue val id: Long? = null, val name: String, val age: Int)
 
-
-
 @Entity
-data class Setor(@Id @GeneratedValue val id: Long? = null, val name:String)
+data class Setor(@Id @GeneratedValue val id: Long? = null, val name: String)

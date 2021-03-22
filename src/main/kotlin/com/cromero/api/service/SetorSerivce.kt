@@ -7,17 +7,13 @@ import org.springframework.data.jpa.domain.Specification
 
 interface SetorService {
 
-
-
-
     fun salvarSetor(setor: Setor): Setor
 
-    fun listarSetores():List<Setor>
-
+    fun listarSetores(): List<Setor>
 
      fun buscarPorId(id: Long): Setor
 
      fun listarComFiltros(page: Pageable, query: Specification<Setor?>?): Page<Setor>
 
-
+    fun deletar(id: Long)
 }
