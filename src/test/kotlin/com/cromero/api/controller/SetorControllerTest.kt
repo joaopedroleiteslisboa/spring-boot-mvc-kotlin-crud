@@ -42,7 +42,7 @@ internal class SetorControllerTest @Autowired constructor(
 
         mockMvc.get(path_setor).andDo { println() }
             .andExpect {
-                status { isNoContent }
+                status { isOk }
 
                 content { contentType(MediaType.APPLICATION_JSON) }
             }
@@ -61,7 +61,7 @@ internal class SetorControllerTest @Autowired constructor(
             contentType = MediaType.APPLICATION_JSON
         }.andDo { print() }
 
-            .andExpect { status { isNoContent } }
+            .andExpect { status { isCreated } }
     }
 
     @Test
