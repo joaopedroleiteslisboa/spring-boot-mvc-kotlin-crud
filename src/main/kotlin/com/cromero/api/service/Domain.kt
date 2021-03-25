@@ -1,6 +1,10 @@
 package com.cromero.api.service
 
+import com.cromero.api.repository.Contato
+import com.cromero.api.repository.Pessoa
+import com.cromero.api.repository.Setor
 import com.cromero.api.repository.UserEntity
+import javax.persistence.*
 
 enum class Color(val rgb: Int, val description: String) {
     RED(0xFF0000, "red color nice"),
@@ -48,3 +52,47 @@ data class User(
 }
 
 data class Pet(val name: String, val age: Int)
+
+
+data class PessoaDTO(
+
+    var id: Long? = null,
+
+    var nome: String,
+
+    var sobreNome: String,
+
+    var contato: Contato?,
+
+    var setor: Setor?
+
+) {
+
+
+    fun creatPessoaEntity() = Pessoa(
+
+        id = id, nome = nome,
+        sobreNome = sobreNome,
+        contato = contato,
+        setor = setor
+
+    )
+
+
+    companion object {
+
+
+        fun creatFromUserEntity(entidade: Pessoa) = PessoaDTO(
+
+            id = entidade.id,
+            nome = entidade.nome,
+            sobreNome = entidade.sobreNome,
+            setor = entidade.setor,
+            contato = entidade.contato
+
+        )
+    }
+
+
+}
+

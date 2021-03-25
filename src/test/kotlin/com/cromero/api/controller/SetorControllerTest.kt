@@ -30,11 +30,11 @@ internal class SetorControllerTest @Autowired constructor(
     fun `Valida retorno da lista de setores`() {
 
         val setores = arrayListOf<Setor>(
-            Setor(name = "SETOR 1"),
-            Setor(name = "SETOR 2"),
-            Setor(name = "SETOR 3"),
-            Setor(name = "SETOR 4"),
-            Setor(name = "SETOR 5")
+            Setor(nome = "SETOR 1"),
+            Setor(nome = "SETOR 2"),
+            Setor(nome = "SETOR 3"),
+            Setor(nome = "SETOR 4"),
+            Setor(nome = "SETOR 5")
 
         )
 
@@ -51,7 +51,7 @@ internal class SetorControllerTest @Autowired constructor(
     @Test
     fun `criar novos setores`() {
 
-        var setores = Setor(name = "SETOR 1")
+        var setores = Setor(nome = "SETOR 1")
 
         var json = objectMapper.writeValueAsString(setores)
 
@@ -68,11 +68,11 @@ internal class SetorControllerTest @Autowired constructor(
     fun `apagar um setor`() {
 
         val setores = arrayListOf<Setor>(
-            Setor(name = "SETOR 1"),
-            Setor(name = "SETOR 2"),
-            Setor(name = "SETOR 3"),
-            Setor(name = "SETOR 4"),
-            Setor(name = "SETOR 5")
+            Setor(nome = "SETOR 1"),
+            Setor(nome = "SETOR 2"),
+            Setor(nome = "SETOR 3"),
+            Setor(nome = "SETOR 4"),
+            Setor(nome = "SETOR 5")
 
         )
 

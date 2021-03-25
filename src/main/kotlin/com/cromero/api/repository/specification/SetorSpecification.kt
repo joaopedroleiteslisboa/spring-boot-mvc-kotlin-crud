@@ -29,11 +29,7 @@ class SetorSpecification {
                 null
             } else {
                 Specification { root: Root<Setor?>, query: CriteriaQuery<*>?, cb: CriteriaBuilder ->
-                    cb.equal(
-                        root.get<Any>(
-                            "name"
-                        ), nome
-                    )
+                    cb.like(cb.upper(root.get("nome")), "%" + nome.toUpperCase() + "%")
                 }
             }
         }

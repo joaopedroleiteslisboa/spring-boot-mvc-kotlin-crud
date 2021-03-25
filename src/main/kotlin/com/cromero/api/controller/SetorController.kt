@@ -24,7 +24,7 @@ class SetorController(val service: SetorService) {
 
         println("caiiiuu aqq")
 
-        val sortedByPriceDesc: Pageable = PageRequest.of(0, 3, Sort.by("name").descending())
+        val sortedByPriceDesc: Pageable = PageRequest.of(0, 3, Sort.by("nome").descending())
 
         val query: Specification<Setor?>? = Specification.where(
             SetorSpecification.porID(id)

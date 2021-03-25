@@ -12,10 +12,10 @@ class SetoresServiceImpl(val repository: SetorRepository) : SetorService {
 
     override fun salvarSetor(setor: Setor): Setor {
 
-        if (setor.name.isNullOrBlank())
+        if (setor.nome.isNullOrBlank())
             throw RegraNegocioException("Setor com nome Invalido")
 
-        if (this.repository.findByName(setor.name).isPresent)
+        if (this.repository.findByNome(setor.nome).isPresent)
             throw RegraNegocioException("Setor informado já existente")
 
         return this.repository.save(setor)
